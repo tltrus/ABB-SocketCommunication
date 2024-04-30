@@ -1,5 +1,5 @@
 # ABB-SocketCommunication
- C#
+ C# algorithm for Abb Socket communication with RobotStudio RAPID code
  
  https://youtu.be/-mW3tndIbZ4
 
