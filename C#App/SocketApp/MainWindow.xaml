@@ -1,0 +1,29 @@
+﻿<Window x:Class="Painting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Painting"
+        mc:Ignorable="d"
+        Title="Socket Communication" Height="372" Width="349" Closing="Window_Closing">
+    <Grid Margin="5">
+        <StackPanel>
+
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5">
+                <Label Content="SN:" VerticalAlignment="Center" Width="40"/>
+                <ComboBox x:Name="cbox_Controllers" Width="200" SelectionChanged="cbox_Controllers_SelectionChanged" ></ComboBox>
+            </WrapPanel>
+
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5">
+                <Label Content="MSG:" VerticalAlignment="Center" Width="40"/>
+                <TextBox Name="tbSend" Width="200" Height="25"/>
+                <Button x:Name="btnSend" Content="SEND" Padding="4" Margin="5" IsEnabled="False" Click="btnSend_Click"/>
+            </WrapPanel>
+
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5">
+                <Label Content="Log:" Width="40"/>
+                <RichTextBox x:Name="rtbLog" Width="200" Height="200"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>

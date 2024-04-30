@@ -1,0 +1,43 @@
+MODULE Module1
+    VAR socketdev serverSocket;
+    VAR socketdev clientSocket;
+    VAR string data;
+
+    PROC main()
+        SocketCreate serverSocket;
+        SocketBind serverSocket,"127.0.0.1",4000;
+        SocketListen serverSocket;
+        SocketAccept serverSocket,clientSocket,\Time:=WAIT_MAX;
+
+        WHILE TRUE DO
+            
+            SocketReceive clientSocket\Str:=data;       ! from C# app
+            SocketSend clientSocket\Str:=data + "_";    ! to C# app
+        
+        ENDWHILE
+
+        SocketClose clientSocket;
+        SocketClose serverSocket;
+
+    ERROR
+
+        IF ERRNO=ERR_SOCK_TIMEOUT THEN
+            RETRY;
+
+        ELSEIF ERRNO=ERR_SOCK_CLOSED THEN
+            SocketClose clientSocket;
+
+            SocketClose serverSocket;
+            SocketCreate serverSocket;
+            SocketBind serverSocket,"127.0.0.1",4000;
+            SocketListen serverSocket;
+            SocketAccept serverSocket,clientSocket,\Time:=WAIT_MAX;
+
+            RETRY;
+
+        ELSE
+            stop;
+        ENDIF
+
+    ENDPROC
+ENDMODULE
